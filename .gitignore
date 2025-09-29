@@ -1,20 +1,48 @@
-
+# Maven
 /target/
-/pom.xml.tag
-/pom.xml.releaseBackup
-/pom.xml.versionsBackup
-/logs/
+!.mvn/wrapper/maven-wrapper.jar
 
+# IntelliJ IDEA
 .idea/
-/*.iml
+*.iml
 *.iws
+*.ipr
 out/
 
+# VS Code
+.vscode/
 
-*.class
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs
 *.log
-*.jar
-*.war
-*.ear
-*.nar
 
+# Java
+*.class
+
+# JavaFX
+*.fxml~
+
+# Eclipse (если кто-то будет открывать в Eclipse)
+.project
+.classpath
+.settings/
+
+# Build tools
+dist/
+build/
+
+# Temporary files
+*.swp
+*.swo
+*.bak
+*~
+
+# Environment files (если есть)
+.env
