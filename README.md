@@ -9,4 +9,4 @@
 
 ## Демонстрация работы рисования треугольника и прямоугольника
 
-![Alt Text](https://jumpshare.com/s/0Pz4vQ537V1tXpIsLaq1)
+[![2025 09 29 12 55 57](https://pixvid.org/images/2025/09/29/UX14s.gif)](https://pixvid.org/image/UX14s)
