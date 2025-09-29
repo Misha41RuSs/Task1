@@ -6,3 +6,7 @@
     Далее находится Canvas где пользователь рисует фигуры
     И на нижнем уровне кнопки для рисования конкретных фигур
 [![image.png](https://s.iimg.su/s/29/gMFTRk2xFpuiPi2t7kAC6XbaLj9JhRGFXWTWiMwb.png)](https://iimg.su/i/MFTRk2)
+
+## Демонстрация работы рисования треугольника и прямоугольника
+
+![Alt Text](https://jumpshare.com/s/0Pz4vQ537V1tXpIsLaq1)
