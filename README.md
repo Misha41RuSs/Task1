@@ -12,7 +12,7 @@
 - Центральной части с холстом (`Canvas`)
 - Нижней панели с кнопками для выбора режима рисования и управления
 
-![Главное окно](https://s.iimg.su/s/29/gMFTRk2xFpuiPi2t7kAC6XbaLj9JhRGFXWTWiMwb.png)
+![Главное окно](https://i.postimg.cc/pTyMNPgc/image.png)
 
 ---
 
@@ -33,7 +33,7 @@
 
 Ниже демонстрация рисования треугольника и прямоугольника:
 
-[![Demo: рисование фигур](https://pixvid.org/images/2025/09/29/UX14s.gif)](https://pixvid.org/image/UX14s)
+[![Demo: рисование фигур](https://androiddevhub.com/gif_uploads/68ec08ee159cc.gif)]
 
 ---
 
