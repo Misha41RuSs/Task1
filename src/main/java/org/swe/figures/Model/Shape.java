@@ -5,18 +5,16 @@ import javafx.scene.paint.Color;
 
 public abstract class Shape {
     protected Color color;
+    protected double lineWidth;
+
+    public Shape(Color color, double lineWidth) {
+        this.color = color;
+        this.lineWidth = lineWidth;
+    }
 
     abstract double area();
-    public abstract void draw(GraphicsContext gr);
-    public abstract void draw(GraphicsContext graphicsContext, double min, double min1);
+    public abstract void draw(GraphicsContext gc);
 
-    public Shape(Color color) {
-        System.out.println("Shape constructor called");
-        this.color = color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
+    public void setColor(Color color) { this.color = color; }
+    public void setLineWidth(double lineWidth) { this.lineWidth = lineWidth; }
 }
