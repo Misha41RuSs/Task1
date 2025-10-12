@@ -33,7 +33,7 @@
 
 Ниже демонстрация рисования треугольника и прямоугольника:
 
-[![Demo: рисование фигур](https://androiddevhub.com/gif_uploads/68ec08ee159cc.gif)](https://androiddevhub.com/gif_uploads/68ec08ee159cc.gif)
+[![Demo: рисование фигур](https://jumpshare.com/s/sCey1kbMaXzJKpN0xqG4)](https://jumpshare.com/s/sCey1kbMaXzJKpN0xqG4)
 
 ---
 
