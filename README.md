@@ -33,7 +33,7 @@
 
 Ниже демонстрация рисования треугольника и прямоугольника:
 
-[![Demo: рисование фигур](https://jumpshare.com/s/sCey1kbMaXzJKpN0xqG4)](https://jumpshare.com/s/sCey1kbMaXzJKpN0xqG4)
+[![Demo: рисование фигур](https://ibb.co/wZXpMdNz)](https://i.ibb.co/Y4MfpN7L/2025-10-12-22-57-56.gif)
 
 ---
 
