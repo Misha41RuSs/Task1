@@ -6,11 +6,18 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.swe.figures.Model.Shape;
+import org.swe.figures.Model.Rectangle;
+import org.swe.figures.Model.Triangle;
+import org.swe.figures.Model.Circle;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
+
+    private final List<Shape> shapes = new ArrayList<>();
 
     @FXML
     private Canvas canvas;
@@ -40,8 +47,7 @@ public class Controller {
         gc = canvas.getGraphicsContext2D();
         colorPicker.setValue(Color.BLACK);
 
-        // Настройка ComboBox
-        modeComboBox.getItems().addAll("Прямоугольник", "Треугольник", "Свободное рисование");
+        modeComboBox.getItems().addAll("Прямоугольник", "Треугольник", "Окружность/круг", "Свободное рисование");
         modeComboBox.getSelectionModel().select("Свободное рисование");
 
         modeComboBox.setOnAction(e -> {
@@ -49,14 +55,12 @@ public class Controller {
             points.clear();
         });
 
-        // Настройка событий мыши
         canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, this::handleMousePressed);
         canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, this::handleMouseDragged);
         canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, this::handleMouseReleased);
         canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, this::handleMouseClicked);
     }
 
-    /** Начало пути (для свободного рисования) **/
     private void handleMousePressed(MouseEvent e) {
         if (currentMode.equals("Свободное рисование")) {
             gc.setStroke(colorPicker.getValue());
@@ -67,7 +71,6 @@ public class Controller {
         }
     }
 
-    /** Рисование свободной линии **/
     private void handleMouseDragged(MouseEvent e) {
         if (currentMode.equals("Свободное рисование")) {
             gc.lineTo(e.getX(), e.getY());
@@ -75,7 +78,6 @@ public class Controller {
         }
     }
 
-    /** Завершение пути **/
     private void handleMouseReleased(MouseEvent e) {
         if (currentMode.equals("Свободное рисование")) {
             if (fillCheckBox.isSelected()) {
@@ -85,7 +87,6 @@ public class Controller {
         }
     }
 
-    /** Рисование фигур по кликам **/
     private void handleMouseClicked(MouseEvent e) {
         if (currentMode.equals("Свободное рисование")) return; // свободное рисование уже обрабатывается
 
@@ -107,11 +108,9 @@ public class Controller {
             double width = Math.abs(x2 - x1);
             double height = Math.abs(y2 - y1);
 
-            if (fillCheckBox.isSelected()) {
-                gc.fillRect(minX, minY, width, height);
-            } else {
-                gc.strokeRect(minX, minY, width, height);
-            }
+            Shape rect = new Rectangle(colorPicker.getValue(), lineWidthSlider.getValue(), minX, minY, width, height, fillCheckBox.isSelected());
+            shapes.add(rect);
+            rect.draw(gc);
 
             points.clear();
         }
@@ -120,19 +119,52 @@ public class Controller {
             double[] xPoints = { points.get(0), points.get(2), points.get(4) };
             double[] yPoints = { points.get(1), points.get(3), points.get(5) };
 
-            if (fillCheckBox.isSelected()) {
-                gc.fillPolygon(xPoints, yPoints, 3);
-            } else {
-                gc.strokePolygon(xPoints, yPoints, 3);
-            }
+            Shape triangle = new Triangle(colorPicker.getValue(), lineWidthSlider.getValue(), xPoints, yPoints, fillCheckBox.isSelected());
+            shapes.add(triangle);
+            triangle.draw(gc);
 
             points.clear();
         }
+
+        if (currentMode.equals("Окружность/круг") && points.size() == 4) {
+            double centerX = points.get(0);
+            double centerY = points.get(1);
+            double edgeX = points.get(2);
+            double edgeY = points.get(3);
+
+            double radius = Math.hypot(edgeX - centerX, edgeY - centerY);
+
+            Shape circle = new Circle(colorPicker.getValue(), lineWidthSlider.getValue(), centerX, centerY, radius, fillCheckBox.isSelected());
+            shapes.add(circle);
+            circle.draw(gc);
+
+            points.clear();
+        }
+
+
     }
 
     @FXML
     void clear() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        shapes.clear();
         points.clear();
     }
+
+    @FXML
+    void undo() {
+        if (!shapes.isEmpty()) {
+            shapes.remove(shapes.size() - 1);
+            redrawCanvas();
+        }
+    }
+
+    private void redrawCanvas() {
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        for (Shape shape : shapes) {
+            shape.draw(gc);
+        }
+    }
+
+
 }
