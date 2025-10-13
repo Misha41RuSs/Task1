@@ -4,26 +4,28 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Circle extends Shape {
-    private final double centerX, centerY, radius;
-    private final boolean fill;
+    private double radius;
+    private boolean fill;
 
     public Circle(Color color, double lineWidth, double centerX, double centerY, double radius, boolean fill) {
-        super(color, lineWidth);
-        this.centerX = centerX;
-        this.centerY = centerY;
+        super(color, lineWidth, centerX, centerY, "Окружность/круг");
         this.radius = radius;
         this.fill = fill;
     }
 
+    public Circle(String name) {
+        super(name);
+    }
+
     @Override
-    double area() {
+    public double area() {
         return Math.PI * radius * radius;
     }
 
     @Override
     public void draw(GraphicsContext gc) {
-        double topLeftX = centerX - radius;
-        double topLeftY = centerY - radius;
+        double topLeftX = startX - radius;
+        double topLeftY = startY - radius;
         double diameter = radius * 2;
 
         gc.setStroke(color);
@@ -34,10 +36,5 @@ public class Circle extends Shape {
             gc.fillOval(topLeftX, topLeftY, diameter, diameter);
         else
             gc.strokeOval(topLeftX, topLeftY, diameter, diameter);
-    }
-
-    @Override
-    public String toString() {
-        return "Circle[color=" + color + ", area=" + area() + "]";
     }
 }

@@ -4,19 +4,23 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Triangle extends Shape {
-    private final double[] xPoints;
-    private final double[] yPoints;
-    private final boolean fill;
+    private double[] xPoints;
+    private double[] yPoints;
+    private boolean fill;
 
     public Triangle(Color color, double lineWidth, double[] xPoints, double[] yPoints, boolean fill) {
-        super(color, lineWidth);
+        super(color, lineWidth, xPoints[0], yPoints[0], "Треугольник");
         this.xPoints = xPoints;
         this.yPoints = yPoints;
         this.fill = fill;
     }
 
+    public Triangle(String name) {
+        super(name);
+    }
+
     @Override
-    double area() {
+    public double area() {
         return Math.abs((xPoints[0]*(yPoints[1]-yPoints[2]) +
                 xPoints[1]*(yPoints[2]-yPoints[0]) +
                 xPoints[2]*(yPoints[0]-yPoints[1])) / 2.0);
@@ -31,10 +35,5 @@ public class Triangle extends Shape {
             gc.fillPolygon(xPoints, yPoints, 3);
         else
             gc.strokePolygon(xPoints, yPoints, 3);
-    }
-
-    @Override
-    public String toString() {
-        return "Triangle[color=" + color + ", area=" + area() + "]";
     }
 }

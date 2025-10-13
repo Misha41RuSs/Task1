@@ -18,7 +18,9 @@
             <Insets top="10" right="10" bottom="10" left="10"/>
          </padding>
          <children>
-            <Label text="Рисование фигур" maxWidth="Infinity" HBox.hgrow="ALWAYS" alignment="CENTER">
+            <Label text="Рисование фигур"
+                   maxWidth="Infinity"
+                   HBox.hgrow="ALWAYS" alignment="CENTER">
                <font>
                   <Font name="Times New Roman Bold" size="32.0" />
                </font>

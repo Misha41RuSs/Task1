@@ -1,0 +1,138 @@
+@startuml
+class org.swe.figures.Tools.ToolFactory {
+- GraphicsContext gc
++ DrawTool createTool(String,Color,double,boolean,Consumer<Shape>)
+}
+
+
+class org.swe.figures.Model.Circle {
+- double radius
+- boolean fill
++ double area()
++ void draw(GraphicsContext)
+}
+
+
+class org.swe.figures.Model.Rectangle {
+- double width
+- boolean fill
++ double area()
++ void draw(GraphicsContext)
+}
+
+
+class org.swe.figures.Tools.TriangleTool {
+# int requiredPoints()
+# Shape buildShape(double[])
+}
+
+class org.swe.figures.Model.Triangle {
+- double[] xPoints
+- double[] yPoints
+- boolean fill
++ double area()
++ void draw(GraphicsContext)
+}
+
+
+class org.swe.figures.Tools.FreeDrawTool {
+- GraphicsContext gc
+- Color color
+- double lineWidth
+- boolean fill
++ void onMousePressed(MouseEvent)
++ void onMouseDragged(MouseEvent)
++ void onMouseReleased(MouseEvent)
++ void onMouseClicked(MouseEvent)
++ void drawHelperPoints()
+}
+
+
+abstract class org.swe.figures.Tools.ShapeTool {
+# GraphicsContext gc
+# List<Double> points
+# Consumer<Shape> onShapeReady
+# Color color
+# double lineWidth
+# boolean fill
+# {abstract}int requiredPoints()
+# {abstract}Shape buildShape(double[])
++ void onMouseClicked(MouseEvent)
++ void onMousePressed(MouseEvent)
++ void onMouseDragged(MouseEvent)
++ void onMouseReleased(MouseEvent)
++ void drawHelperPoints()
+}
+
+
+abstract class org.swe.figures.Model.Shape {
+# Color color
+# double lineWidth
+# String name
+# double startX
+# double startY
++ {abstract}double area()
++ {abstract}void draw(GraphicsContext)
++ String getName()
++ double getStartX()
++ double getStartY()
+}
+
+
+interface org.swe.figures.Tools.DrawTool {
+~ void onMousePressed(MouseEvent)
+~ void onMouseDragged(MouseEvent)
+~ void onMouseReleased(MouseEvent)
+~ void onMouseClicked(MouseEvent)
+~ void drawHelperPoints()
+}
+
+class org.swe.figures.Controller {
+- Canvas canvas
+- ColorPicker colorPicker
+- CheckBox fillCheckBox
+- Slider lineWidthSlider
+- ComboBox<String> modeComboBox
+- GraphicsContext gc
+- ToolFactory toolFactory
+- DrawTool currentTool
+- List<Shape> shapes
++ void initialize()
+- void clear()
+- void updateTool()
++ void undo(ActionEvent)
+}
+
+
+class org.swe.figures.Tools.CircleTool {
+# int requiredPoints()
+# Shape buildShape(double[])
+}
+
+class org.swe.figures.Tools.RectangleTool {
+# int requiredPoints()
+# Shape buildShape(double[])
+}
+
+class org.swe.figures.Model.ShapeFactory {
++ Shape[] createAllShapes()
++ Shape createShape(String,Color,double,boolean,double[])
+}
+
+class org.swe.figures.Main {
++ void start(Stage)
++ {static} void main(String[])
+}
+
+
+
+org.swe.figures.Model.Shape <|-- org.swe.figures.Model.Circle
+org.swe.figures.Model.Shape <|-- org.swe.figures.Model.Rectangle
+org.swe.figures.Tools.ShapeTool <|-- org.swe.figures.Tools.TriangleTool
+org.swe.figures.Model.Shape <|-- org.swe.figures.Model.Triangle
+org.swe.figures.Tools.DrawTool <|.. org.swe.figures.Tools.FreeDrawTool
+org.swe.figures.Tools.DrawTool <|.. org.swe.figures.Tools.ShapeTool
+org.swe.figures.Tools.ShapeTool <|-- org.swe.figures.Tools.CircleTool
+org.swe.figures.Tools.ShapeTool <|-- org.swe.figures.Tools.RectangleTool
+javafx.application.Application <|-- org.swe.figures.Main
+@enduml

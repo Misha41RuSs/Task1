@@ -4,20 +4,23 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Rectangle extends Shape {
-    private final double x, y, width, height;
-    private final boolean fill;
+    private double width, height;
+    private boolean fill;
 
-    public Rectangle(Color color, double lineWidth, double x, double y, double width, double height, boolean fill) {
-        super(color, lineWidth);
-        this.x = x;
-        this.y = y;
+    public Rectangle(Color color, double lineWidth, double startX, double startY,
+                     double width, double height, boolean fill) {
+        super(color, lineWidth, startX, startY, "Прямоугольник");
         this.width = width;
         this.height = height;
         this.fill = fill;
     }
 
+    public Rectangle(String name) {
+        super(name);
+    }
+
     @Override
-    double area() {
+    public double area() {
         return width * height;
     }
 
@@ -27,13 +30,8 @@ public class Rectangle extends Shape {
         gc.setFill(color);
         gc.setLineWidth(lineWidth);
         if (fill)
-            gc.fillRect(x, y, width, height);
+            gc.fillRect(startX, startY, width, height);
         else
-            gc.strokeRect(x, y, width, height);
-    }
-
-    @Override
-    public String toString() {
-        return "Rectangle[color=" + color + ", area=" + area() + "]";
+            gc.strokeRect(startX, startY, width, height);
     }
 }
