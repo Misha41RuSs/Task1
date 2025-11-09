@@ -55,9 +55,11 @@
          <children>
             <Label text="Режим:"/>
             <ComboBox fx:id="modeComboBox" prefWidth="200.0"/>
+            <Button fx:id="saveButton" onAction="#saveCanvas" text="Сохранить" />
+            <Button fx:id="loadButton" onAction="#loadCanvas" text="Загрузить" />
             <Button fx:id="clear" onAction="#clear" text="Очистить" />
+            <Button fx:id="undo" onAction="#undo" text="Отменить" />
          </children>
-         <Button fx:id="undo" onAction="#undo" text="Отменить" />
       </HBox>
    </bottom>
 </BorderPane>

@@ -4,9 +4,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Triangle extends Shape {
-    private double[] xPoints;
-    private double[] yPoints;
-    private boolean fill;
+    public double[] xPoints;
+    public double[] yPoints;
+    public boolean fill;
 
     public Triangle(Color color, double lineWidth, double[] xPoints, double[] yPoints, boolean fill) {
         super(color, lineWidth, xPoints[0], yPoints[0], "Треугольник");

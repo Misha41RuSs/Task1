@@ -4,8 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Rectangle extends Shape {
-    private double width, height;
-    private boolean fill;
+    public double width, height;
+    public boolean fill;
 
     public Rectangle(Color color, double lineWidth, double startX, double startY,
                      double width, double height, boolean fill) {

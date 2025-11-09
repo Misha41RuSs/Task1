@@ -4,8 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Circle extends Shape {
-    private double radius;
-    private boolean fill;
+    public double radius;
+    public boolean fill;
 
     public Circle(Color color, double lineWidth, double centerX, double centerY, double radius, boolean fill) {
         super(color, lineWidth, centerX, centerY, "Окружность/круг");

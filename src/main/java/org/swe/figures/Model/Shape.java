@@ -29,4 +29,6 @@ public abstract class Shape {
     public String getName() { return name; }
     public double getStartX() { return startX; }
     public double getStartY() { return startY; }
+    public Color getColor() { return color; }
+    public double getLineWidth() { return lineWidth; }
 }
