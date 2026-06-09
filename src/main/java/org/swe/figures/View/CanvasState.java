@@ -7,7 +7,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Хранитель (Memento) в паттерне Memento.
+ * Сериализуемый класс, который хранит снимок состояния холста: список фигур,
+ * выбранный цвет, толщину линии и состояние заливки.
+ */
 public class CanvasState implements Serializable {
     private static final long serialVersionUID = 1L;
     

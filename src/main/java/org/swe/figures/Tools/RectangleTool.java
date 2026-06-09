@@ -7,6 +7,10 @@ import org.swe.figures.Model.Shape;
 
 import java.util.function.Consumer;
 
+/**
+ * Инструмент для создания прямоугольника.
+ * Ожидает 2 клика мыши: противоположные углы прямоугольника.
+ */
 public class RectangleTool extends ShapeTool {
     public RectangleTool(GraphicsContext gc, Color color, double lineWidth, boolean fill,
                          Consumer<Shape> onShapeReady, IShapeFactory shapeFactory) {

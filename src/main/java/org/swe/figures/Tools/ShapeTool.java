@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * Абстрактный базовый класс для инструментов, создающих фигуры по точкам.
+ * Накапливает координаты кликов мыши и при достижении нужного количества
+ * делегирует создание фигуры фабрике.
+ */
 public abstract class ShapeTool implements DrawTool {
     protected final GraphicsContext gc;
     protected final List<Double> points = new ArrayList<>();
@@ -21,6 +26,17 @@ public abstract class ShapeTool implements DrawTool {
     protected double lineWidth;
     protected boolean fill;
 
+    /**
+     * Инициализирует базовые параметры инструмента фигуры.
+     *
+     * @param gc           Графический контекст.
+     * @param color        Цвет фигуры.
+     * @param lineWidth    Толщина линии.
+     * @param fill         Флаг заливки.
+     * @param onShapeReady Callback при готовности фигуры.
+     * @param shapeFactory Фабрика для создания фигуры.
+     * @param shapeType    Строковый тип фигуры.
+     */
     public ShapeTool(GraphicsContext gc, Color color, double lineWidth, boolean fill,
                      Consumer<Shape> onShapeReady, IShapeFactory shapeFactory, String shapeType) {
         this.gc = gc;
@@ -32,7 +48,11 @@ public abstract class ShapeTool implements DrawTool {
         this.shapeType = shapeType;
     }
 
+    /**
+     * @return Количество точек (кликов), необходимых для построения данной фигуры.
+     */
     protected abstract int requiredPoints();
+
 
     @Override
     public void onMouseClicked(MouseEvent e) {

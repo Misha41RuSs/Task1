@@ -7,6 +7,10 @@ import org.swe.figures.Model.Shape;
 
 import java.util.function.Consumer;
 
+/**
+ * Инструмент для создания треугольника.
+ * Ожидает 3 клика мыши: вершины треугольника.
+ */
 public class TriangleTool extends ShapeTool {
     public TriangleTool(GraphicsContext gc, Color color, double lineWidth, boolean fill,
                         Consumer<Shape> onShapeReady, IShapeFactory shapeFactory) {

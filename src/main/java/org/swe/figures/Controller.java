@@ -24,6 +24,8 @@ public class Controller {
     @FXML private CheckBox fillCheckBox;
     @FXML private Slider lineWidthSlider;
     @FXML private ComboBox<String> modeComboBox;
+    @FXML private Label sidesLabel;
+    @FXML private TextField sidesField;
 
     private GraphicsContext gc;
     private IToolFactory toolFactory;
@@ -49,6 +51,13 @@ public class Controller {
         }
         modeComboBox.getSelectionModel().select("Свободное рисование");
 
+        sidesField.textProperty().addListener((obs, o, n) -> {
+            if (!n.matches("\\d*")) {
+                sidesField.setText(n.replaceAll("[^\\d]", ""));
+            }
+            updateTool();
+        });
+
         updateTool();
 
         modeComboBox.setOnAction(e -> updateTool());
@@ -62,6 +71,9 @@ public class Controller {
         canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> currentTool.onMouseClicked(e));
     }
 
+    /**
+     * Очищает холст и удаляет все сохраненные фигуры.
+     */
     @FXML
     private void clear() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -69,13 +81,34 @@ public class Controller {
     }
 
 
+    /**
+     * Обновляет текущий инструмент рисования в зависимости от выбранных параметров интерфейса.
+     */
     private void updateTool() {
         String mode = modeComboBox.getValue();
+        
+        // Показываем поле ввода количества сторон только для Многоугольника
+        boolean isPolygon = "Многоугольник".equals(mode);
+        if (sidesLabel != null && sidesField != null) {
+            sidesLabel.setVisible(isPolygon);
+            sidesLabel.setManaged(isPolygon);
+            sidesField.setVisible(isPolygon);
+            sidesField.setManaged(isPolygon);
+        }
+
+        int sides = 5; // Значение по умолчанию
+        if (isPolygon && sidesField != null && !sidesField.getText().isEmpty()) {
+            try {
+                sides = Integer.parseInt(sidesField.getText());
+            } catch (NumberFormatException ignored) {}
+        }
+
         currentTool = toolFactory.createTool(
                 mode,
                 colorPicker.getValue(),
                 lineWidthSlider.getValue(),
                 fillCheckBox.isSelected(),
+                sides,
                 shape -> {
                     shapes.add(shape);
                     shape.draw(gc);

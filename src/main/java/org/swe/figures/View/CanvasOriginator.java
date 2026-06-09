@@ -9,7 +9,11 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Создатель (Originator) в паттерне Memento.
+ * Отвечает за сохранение текущего состояния холста (фигуры, цвета, настройки)
+ * и его восстановление из сохраненного объекта CanvasState.
+ */
 public class CanvasOriginator {
     private List<Shape> shapes;
     private Color currentColor;

@@ -2,6 +2,10 @@ package org.swe.figures.Model;
 
 import javafx.scene.paint.Color;
 
+/**
+ * Фабрика для создания конкретных графических фигур.
+ * Реализует паттерн Factory Method.
+ */
 public class ShapeFactory implements IShapeFactory {
 
     @Override
@@ -9,7 +13,8 @@ public class ShapeFactory implements IShapeFactory {
         return new Shape[]{
                 new Circle("Окружность/круг"),
                 new Rectangle("Прямоугольник"),
-                new Triangle("Треугольник")
+                new Triangle("Треугольник"),
+                new NPolygon("Многоугольник")
         };
     }
 
@@ -19,6 +24,7 @@ public class ShapeFactory implements IShapeFactory {
             case "Окружность/круг" -> createCircle(color, lineWidth, array, fill);
             case "Прямоугольник" -> createRectangle(color, lineWidth, array, fill);
             case "Треугольник" -> createTriangle(color, lineWidth, array, fill);
+            case "Многоугольник" -> createNPolygon(color, lineWidth, array, fill);
             default -> null;
         };
     }
@@ -48,5 +54,14 @@ public class ShapeFactory implements IShapeFactory {
         double[] xPoints = {array[0], array[2], array[4]};
         double[] yPoints = {array[1], array[3], array[5]};
         return new Triangle(color, lineWidth, xPoints, yPoints, fill);
+    }
+
+    private NPolygon createNPolygon(Color color, double lineWidth, double[] array, boolean fill) {
+        double cx = array[0];
+        double cy = array[1];
+        double ex = array[2];
+        double ey = array[3];
+        int sides = (int) array[4];
+        return new NPolygon(color, lineWidth, cx, cy, ex, ey, sides, fill);
     }
 }
