@@ -1,0 +1,5 @@
+module:org.swe.figures
+org.swe.figures
+org.swe.figures.Model
+org.swe.figures.Tools
+org.swe.figures.View

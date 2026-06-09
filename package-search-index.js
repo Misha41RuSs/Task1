@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"org.swe.figures","l":"org.swe.figures"},{"m":"org.swe.figures","l":"org.swe.figures.Model"},{"m":"org.swe.figures","l":"org.swe.figures.Tools"},{"m":"org.swe.figures","l":"org.swe.figures.View"}];updateSearchResults();
